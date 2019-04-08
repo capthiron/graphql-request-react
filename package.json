@@ -1,6 +1,6 @@
 {
   "name": "graphql-request-react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React wrapper for graphql-request",
   "main": "index.js",
   "repository": "https://github.com/Capthiron/graphql-request-react",
