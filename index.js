@@ -1,3 +1,1 @@
-export default printMsg = function() {
-  console.log('Hello World')
-}
+exports.printMsg = (msg) => console.log(msg)
