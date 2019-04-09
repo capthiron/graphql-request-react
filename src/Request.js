@@ -8,7 +8,7 @@ const Request = (props) => {
   const [error, setError] = useState(void 0)
   const [loading, setLoading] = useState(false)
 
-  const requestData = () => {
+  const requestData = async () => {
     setLoading(true)
     const res = await request(props.url, props.query)
     setData(res)
