@@ -1,1 +1,0 @@
-exports.printMsg = (msg) => console.log(msg)

@@ -10,11 +10,24 @@
     "react": "^16.8.6"
   },
   "scripts": {
+    "start": "webpack --watch",
+    "build": "webpack",
     "test": "echo \"Running tests for graphql-request-react\"",
     "preversion": "yarn test",
     "postversion": "git push --tags && git checkout -b release/$npm_package_version && yarn publish . && git push --set-upstream origin release/$npm_package_version && echo \"Successfully released version $npm_package_version!\" && git checkout master && git branch -d release/$npm_package_version && git push"
   },
   "dependencies": {
-    "graphql-request": "^1.8.2"
+    "graphql-request": "^1.8.2",
+    "react": "^16.8.6",
+    "webpack": "^4.29.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.x",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "webpack-cli": "^3.3.0"
   }
 }
