@@ -1,1 +1,3 @@
-export { default as Request } from './modules/Request'
+import Request from './modules/Request'
+
+export default Request
