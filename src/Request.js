@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { request } from 'graphql-request'
 import PropTypes from 'prop-types'
 
 const Request = (props) => {
@@ -7,20 +8,15 @@ const Request = (props) => {
   const [error, setError] = useState(void 0)
   const [loading, setLoading] = useState(false)
 
-  const requestData = async () => {
-    try { 
-      setLoading(true)
-      const response = await fetch(props.url); 
-      const json = await response.json(); 
-      setData(json);
-      setLoading(false)
-    } catch (err) { 
-      setError(err) 
-    } 
+  const requestData = () => {
+    setLoading(true)
+    const res = await request(props.url, props.query)
+    setData(res)
+    setLoading(false)
   }
 
   useEffect(() => {
-    requestData()
+    requestData().catch(err => setError)
   }, [props.url])
 
   if (loading && props.loading) return props.loading()
@@ -31,6 +27,7 @@ const Request = (props) => {
 
 Request.propTypes = {
   url: PropTypes.string.isRequired,
+  query: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
   error: PropTypes.func,
   loading: PropTypes.func
