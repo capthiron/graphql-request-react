@@ -19,7 +19,7 @@ Npm:
 ## Quickstart
 Send a GraphQL query to render an image of Pikachu ⚡. [Try the demo ➡](https://bit.dev/capthiron/graphql-request-react/demo)
 
-```javascript
+```jsx
 const App = () => {
   const url= 'https://graphql-pokemon.now.sh'
   
@@ -40,13 +40,13 @@ const App = () => {
 ```
 
 ## Import
-```javascript
+```jsx
 import Request from 'graphql-request-react'
 ```
 
 ## Examples
 #### Providing variables for a query
-```javascript
+```jsx
 const query = `getPokemon($name: String!) {
   pokemon(name: $name) {
     image
@@ -65,7 +65,7 @@ return (
 ```
 
 #### Adding HTTP header
-```javascript
+```jsx
 <Request url={url} query={query}
   /*Add an options object with appropriate HTTP headers*/
   options={ {headers: {authorization: 'AUTH_TOKEN'}} }
@@ -77,7 +77,7 @@ return (
 
 #### Handling Loading
 You can add a loading function that will be used for rendering during the fetching process.
-```javascript
+```jsx
 <Request url={url} query={query}
   render={data => 
     <img alt={"pokemon"} src={data.pokemon.image}/>
