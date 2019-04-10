@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { request } from 'graphql-request'
+import {GraphQLClient, request} from 'graphql-request'
 import PropTypes from 'prop-types'
 
 const Request = (props) => {
@@ -8,16 +8,28 @@ const Request = (props) => {
   const [error, setError] = useState(void 0)
   const [loading, setLoading] = useState(false)
 
-  const requestData = async () => {
+  const reset = () => {
+    setData(void 0)
+    setError(void 0)
+    setLoading(false)
+  }
+
+  const requestData = async (props) => {
     setLoading(true)
-    const res = await request(props.url, props.query)
+    let res
+    if (props.options) {
+      res = await new GraphQLClient(props.url, props.options).request(props.query, props.variables || null).catch(err => setError(err))
+    } else {
+      res = await request(props.url, props.query, props.variables || null).catch(err => setError(err))
+    }
     setData(res)
     setLoading(false)
   }
 
   useEffect(() => {
-    requestData().catch(err => setError)
-  }, [props.url])
+    reset()
+    requestData(props)
+  }, [props])
 
   if (loading && props.loading) return props.loading()
   if (error && props.error) return props.error(error)
@@ -30,7 +42,9 @@ Request.propTypes = {
   query: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
   error: PropTypes.func,
-  loading: PropTypes.func
+  loading: PropTypes.func,
+  variables: PropTypes.object,
+  options: PropTypes.object
 }
 
 export default Request

@@ -43,27 +43,54 @@ var Request = function Request(props) {
       loading = _useState6[0],
       setLoading = _useState6[1];
 
+  var reset = function reset() {
+    setData(void 0);
+    setError(void 0);
+    setLoading(false);
+  };
+
   var requestData =
   /*#__PURE__*/
   function () {
     var _ref = _asyncToGenerator(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee() {
+    regeneratorRuntime.mark(function _callee(props) {
       var res;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               setLoading(true);
-              _context.next = 3;
-              return (0, _graphqlRequest.request)(props.url, props.query);
 
-            case 3:
+              if (!props.options) {
+                _context.next = 7;
+                break;
+              }
+
+              _context.next = 4;
+              return new _graphqlRequest.GraphQLClient(props.url, props.options).request(props.query, props.variables || null)["catch"](function (err) {
+                return setError(err);
+              });
+
+            case 4:
               res = _context.sent;
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.next = 9;
+              return (0, _graphqlRequest.request)(props.url, props.query, props.variables || null)["catch"](function (err) {
+                return setError(err);
+              });
+
+            case 9:
+              res = _context.sent;
+
+            case 10:
               setData(res);
               setLoading(false);
 
-            case 6:
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -71,16 +98,15 @@ var Request = function Request(props) {
       }, _callee);
     }));
 
-    return function requestData() {
+    return function requestData(_x) {
       return _ref.apply(this, arguments);
     };
   }();
 
   (0, _react.useEffect)(function () {
-    requestData()["catch"](function (err) {
-      return setError;
-    });
-  }, [props.url]);
+    reset();
+    requestData(props);
+  }, [props]);
   if (loading && props.loading) return props.loading();
   if (error && props.error) return props.error(error);
   if (data) return props.render(data);
@@ -92,7 +118,9 @@ Request.propTypes = {
   query: _propTypes["default"].string.isRequired,
   render: _propTypes["default"].func.isRequired,
   error: _propTypes["default"].func,
-  loading: _propTypes["default"].func
+  loading: _propTypes["default"].func,
+  variables: _propTypes["default"].object,
+  options: _propTypes["default"].object
 };
 var _default = Request;
 exports["default"] = _default;
