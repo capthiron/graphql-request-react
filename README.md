@@ -6,13 +6,9 @@ React wrapper for [graphql-request](https://www.npmjs.com/package/graphql-reques
 
 
 ## Install
-Yarn:
-
 `yarn add graphql-request-react`
 
 or
-
-Npm:
 
 `npm install graphql-request-react`
 
