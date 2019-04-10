@@ -89,7 +89,7 @@ You can add a loading function that will be used for rendering during the fetchi
 
 #### Handling Errors
 You can add a error function that will be used for rendering in case of an error.
-```javascript
+```jsx
 <Request url={url} query={query}
   render={data => 
     <img alt={"pokemon"} src={data.pokemon.image}/>
