@@ -104,7 +104,7 @@ You can add a error function that will be used for rendering in case of an error
 |-------------|----------|------------------------------------------------------------------------------------------------------|----------|
 | `url`       | **Yes**  | Url of the graphql endpoint                                                                          | String   |
 | `query`     | **Yes**  | Graphql query                                                                                        | String   |
-| `render`    | **Yes**  | Render function that gets passed in the requested `data` as an object                                | Function |
+| `render`    | **Yes**  | Render function that gets the requested `data` passed in as an object                                | Function |
 | `loading`   | No       | Render function during loading stage                                                                 | Function |
 | `error`     | No       | Render function in case of an error                                                                  | Function |
 | `variables` | No       | Object that provides the variables to a given query                                                  | Object   |
