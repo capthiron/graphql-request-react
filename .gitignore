@@ -17,6 +17,12 @@
 *_LOCAL_*.txt
 *_REMOTE_*.txt
 
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
 ### Node ###
 # Logs
 logs
