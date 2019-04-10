@@ -2,11 +2,24 @@
   "name": "graphql-request-react",
   "version": "1.1.0",
   "description": "React wrapper for graphql-request",
-  "main": "index",
-  "typings": "index",
-  "repository": "https://github.com/Capthiron/graphql-request-react",
+  "main": "index.js",
+  "typings": "index.js",
+  "repository": "https://github.com/capthiron/graphql-request-react",
+  "homepage": "https://github.com/capthiron/graphql-request-react",
+  "bugs": {
+    "url": "https://github.com/capthiron/graphql-request-react/issues"
+  },
   "author": "Dario Leittersdorf <dario97@gmx.de>",
   "license": "MIT",
+  "keywords": [
+    "graphql",
+    "request",
+    "fetch",
+    "graphql-client",
+    "apollo",
+    "react",
+    "relay"
+  ],
   "scripts": {
     "test": "echo \"Running tests for graphql-request-react\"",
     "build": "./node_modules/.bin/babel src --out-file index.js",
